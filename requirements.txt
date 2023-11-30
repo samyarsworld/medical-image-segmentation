@@ -1,0 +1,6 @@
+torch
+pyYAML
+
+# fastapi
+# uvicorn
+.e

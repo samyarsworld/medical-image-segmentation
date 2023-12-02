@@ -6,7 +6,7 @@ with open("README.md", "r", encoding="utf-8") as readme_file:
 __version__ = "0.0.0"
 
 NAME = "image_segmentation"
-REPO_NAME = "image-segmentation"
+REPO_NAME = "medical-image-segmentation"
 
 # Installs all directories with initializer (e.g., __init__.py)
 setuptools.setup(

@@ -4,7 +4,7 @@ import logging
 # Setup information level (e.g., WARNING, ERROR, CRITICAL) logging
 logging.basicConfig(level=logging.INFO, format='[%(asctime)s]: %(message)s:')
 
-project_title = "image-segmentation"
+project_title = "image_segmentation"
 
 # Project structure initialization
 files_and_dirs = [

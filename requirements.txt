@@ -1,6 +1,10 @@
-torch
+# torch==2.0.0+cpu
+ultralytics
+
+# boto3
 pyYAML
 
 # fastapi
 # uvicorn
-.e
+
+-e .

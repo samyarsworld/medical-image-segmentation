@@ -1,0 +1,50 @@
+# A directory For all the produced outputs
+artifacts_root: artifacts
+
+data_ingestion:
+  root_dir: artifacts/data_ingestion
+  data_url:
+  data_path:
+
+data_validation:
+  root_dir: artifacts/data_validation
+  required_files: []
+  status_path: artifacts/data_validation/status.txt
+  data_path: artifacts/data_ingestion
+
+data_transformation:
+  root_dir: artifacts/data_transformation
+  # data_path: artifacts/data_ingestion/samsum.py
+
+model_trainer:
+  root_dir: artifacts/model_trainers
+  data_path: artifacts/data_transformation/dataset
+  # model_ckpt: google/pegasus-cnn_dailymail
+  # main_path: artifacts/model_trainers/pegasus-cnn_dailymail
+
+  # Hyper parameters
+  h_params:
+    epochs: 1
+    # warmup_steps: 500
+    # train_batch_size: 1
+    # eval_batch_size: 1
+    # weight_decay: 0.01
+    # logging_steps: 10
+    # evaluation_strategy: "steps"
+    # eval_steps: 500
+    # save_steps: 1000000
+    # gradient_accumulation_steps: 16
+
+model_evaluation:
+  root_dir: artifacts/model_evaluation
+  data_path: artifacts/data_transformation/dataset
+  # model_path: artifacts/model_trainers/pegasus-cnn_dailymail/model
+  # arguments_path: artifacts/model_trainers/pegasus-cnn_dailymail/arguments
+  metric_file_name: artifacts/model_evaluation/metrics.csv
+  params:
+    eval_batch_size: 2
+    n_samples: 10
+
+target_prediction:
+  root_dir: artifacts/target_prediction
+  # model_path: artifacts/model_trainers/pegasus-cnn_dailymail/model

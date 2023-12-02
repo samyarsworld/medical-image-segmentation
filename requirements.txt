@@ -4,6 +4,7 @@ ultralytics
 # boto3
 pyYAML
 
+python-dotenv
 # fastapi
 # uvicorn
 

@@ -20,8 +20,7 @@ class DataIngestion:
 
         """        
         # Load environmental variables from .env file
-        dotenv_path = os.path.join('config', '.env')
-        load_dotenv(dotenv_path)
+        load_dotenv('.env')
 
         AWS_ACCESS_KEY_ID=os.environ.get("AWS_ACCESS_KEY_ID")
         AWS_SECRET_ACCESS_KEY=os.environ.get("AWS_SECRET_ACCESS_KEY")

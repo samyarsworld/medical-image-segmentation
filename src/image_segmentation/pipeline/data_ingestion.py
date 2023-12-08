@@ -8,4 +8,4 @@ class DataIngestionPipeline:
 
     def run(self):
         data_ingestion = DataIngestion(self.config)
-        data_ingestion.download_files()
+        data_ingestion.download_files_from_cloud()

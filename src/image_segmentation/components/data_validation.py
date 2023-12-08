@@ -6,7 +6,7 @@ from image_segmentation.logging import logger
 class DataValidation:
     def __init__(self, config):
         self.root_dir = config["root_dir"]
-        self.data_path = config["data_path"]
+        self.data_folder_path = config["data_folder_path"]
         self.required_files = config["required_files"]
         self.status_path = config["status_path"]
 
@@ -15,7 +15,7 @@ class DataValidation:
         try:
             status = None
             missing_file = None
-            all_files = os.listdir(self.data_path)
+            all_files = os.listdir(self.data_folder_path)
 
             logger.log("Validating started")
             for file in all_files:

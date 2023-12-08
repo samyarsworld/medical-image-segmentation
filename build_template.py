@@ -16,7 +16,7 @@ files_and_dirs = [
     f"src/{project_title}/__init__.py",
     f"src/{project_title}/components/__init__.py",
     f"src/{project_title}/components/data_ingestion.py",
-    f"src/{project_title}/components/data_transformation.py",
+    f"src/{project_title}/components/data_construction.py",
     f"src/{project_title}/components/data_validation.py",
     f"src/{project_title}/components/model_evaluation.py",
     f"src/{project_title}/components/model_trainer.py",
@@ -28,7 +28,7 @@ files_and_dirs = [
 
     f"src/{project_title}/pipeline/__init__.py",
     f"src/{project_title}/pipeline/data_ingestion.py",
-    f"src/{project_title}/pipeline/data_transformation.py",
+    f"src/{project_title}/pipeline/data_construction.py",
     f"src/{project_title}/pipeline/data_validation.py",
     f"src/{project_title}/pipeline/model_evaluation.py",
     f"src/{project_title}/pipeline/model_trainer.py",

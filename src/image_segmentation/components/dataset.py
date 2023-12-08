@@ -11,14 +11,15 @@ class ImageDataset(Dataset):
     self.base_dir = base_dir
     self.transform = transform
     self.train = train
+    self.train_size = train_size
 
     # Get the list of training data
-    train_obj = os.scandir(base_dir)
+    train_obj = os.scandir(self.base_dir)
     train_ids = sorted([x.name for x in train_obj])
-    self.image_paths = [os.path.join(base_dir, id, "images", id + ".png") for id in train_ids]
-    index = int(np.round(train_size * len(self.image_paths)))
+    self.image_paths = [os.path.join(self.base_dir, id, "images", id + ".png") for id in train_ids]
+    index = int(np.round(self.train_size * len(self.image_paths)))
 
-    if train:
+    if self.train:
       self.image_paths = self.image_paths[:index]
       self.mask_folder_paths = [os.path.join(self.base_dir, id, "masks") for id in train_ids][:index]
     else:

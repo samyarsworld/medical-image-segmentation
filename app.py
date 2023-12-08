@@ -14,8 +14,7 @@ prediction_pipeline = TargetPredictionPipeline(config)
 app = FastAPI()
 
 origins = [
-    "http://localhost:3000",
-    "https://sam-deeplearning.vercel.app/"
+    "http://localhost:3000"
 ]
 
 app.add_middleware(
@@ -45,8 +44,8 @@ async def predict(data: dict):
         # raise CustomException(e, sys) from e
     
 
-# if __name__=="__main__":
-#     uvicorn.run(app, host="localhost", port=80)
+if __name__=="__main__":
+    uvicorn.run(app, host="localhost", port=8000)
 
     
     

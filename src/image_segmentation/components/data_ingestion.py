@@ -10,8 +10,9 @@ from image_segmentation.exception import CustomException
 class DataIngestion:
     def __init__(self, config):
         self.root_dir = config["root_dir"]
-        self.AWS_BUCKET_NAME: config["samyarsworld-nucleidata"]
-        self.AWS_DATASET_NAME: config["data.zip"]
+        self.data_path = config["data_path"]
+        self.AWS_BUCKET_NAME = config["AWS_BUCKET_NAME"]
+        self.AWS_DATASET_NAME = config["AWS_DATASET_NAME"]
 
     def download_files_from_cloud(self):
         """
@@ -54,9 +55,9 @@ class DataIngestion:
 
         """
         try:
-            with zipfile.ZipFile(self.root_dir, 'r') as zip_ref:
+            with zipfile.ZipFile(self.data_path, 'r') as zip_ref:
                 zip_ref.extractall()
-            logger.info(f"Extracting zip file: {self.root_dir}")
+            logger.info(f"Extracting zip file: {self.data_path}")
 
         except Exception as e:
             exception = CustomException(e, sys)

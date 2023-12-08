@@ -10,7 +10,6 @@ class ConfigManager:
 
         # Create directories: does not override files and folders that already exist 
         create_directories([self.config["artifacts_root"]])
-
     
     def get_data_ingestion_config(self) -> Dict:
         config = self.config["data_ingestion"]
@@ -24,8 +23,8 @@ class ConfigManager:
 
         return config
     
-    def get_data_transformation_config(self) -> Dict:
-        config = self.config["data_transformation"]
+    def data_construction_config(self) -> Dict:
+        config = self.config["data_construction"]
         create_directories([config["root_dir"]])
 
         return config

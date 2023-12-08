@@ -1,6 +1,4 @@
-from image_segmentation.logging import logger
 from image_segmentation.components.data_ingestion import DataIngestion
-
 
 class DataIngestionPipeline:
     def __init__(self, config):

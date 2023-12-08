@@ -3,6 +3,7 @@ artifacts_root: artifacts
 
 data_ingestion:
   root_dir: artifacts/data_ingestion
+  data_path: artifacts/data_ingestion/data
   AWS_BUCKET_NAME: samyarsworld-nucleidata
   AWS_DATASET_NAME: data.zip
 
@@ -12,15 +13,18 @@ data_validation:
   required_files: ["data/train", "data/test"]
   status_path: artifacts/data_validation/status.txt
 
-data_transformation:
-  root_dir: artifacts/data_transformation
-  data_path: artifacts/data_ingestion/data
-  base_train_path: artifacts/data/
-  train_size:
+data_construction:
+  root_dir: artifacts/data_construction
+  train_path: artifacts/data_ingestion/data/train
+  h_params:
+    TRAIN_SIZE: 0.7
+    IMG_WIDTH: 128
+    IMG_HEIGHT: 128
+    BATCH_SIZE: 32
 
 model_trainer:
   root_dir: artifacts/model_trainers
-  data_path: artifacts/data_transformation/dataset
+  data_path: artifacts/data_construction/dataset
   # model_ckpt: google/pegasus-cnn_dailymail
   # main_path: artifacts/model_trainers/pegasus-cnn_dailymail
 
@@ -39,7 +43,7 @@ model_trainer:
 
 model_evaluation:
   root_dir: artifacts/model_evaluation
-  data_path: artifacts/data_transformation/dataset
+  data_path: artifacts/data_construction/dataset
   # model_path: artifacts/model_trainers/pegasus-cnn_dailymail/model
   # arguments_path: artifacts/model_trainers/pegasus-cnn_dailymail/arguments
   metric_file_name: artifacts/model_evaluation/metrics.csv

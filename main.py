@@ -5,7 +5,7 @@ import sys
 from image_segmentation.config_manager import ConfigManager
 from image_segmentation.pipeline.data_ingestion import DataIngestionPipeline
 from image_segmentation.pipeline.data_validation import DataValidationPipeline
-from image_segmentation.pipeline.data_transformation import DataTransformationPipeline
+from image_segmentation.pipeline.data_construction import DataConstructionPipeline
 from image_segmentation.pipeline.model_training import ModelTrainingPipeline
 from image_segmentation.pipeline.model_evaluation import ModelEvaluationPipeline
 from image_segmentation.pipeline.target_prediction import TargetPredictionPipeline
@@ -25,23 +25,23 @@ except Exception as e:
     raise exception
 
 
-# STAGE_NAME = "Data Validation"
-# try:
-#    logger.info(f">>>>>> {STAGE_NAME} stage started <<<<<<") 
-#    data_validation = DataValidationPipeline(config)
-#    data_validation.run()
-#    logger.info(f">>>>>> {STAGE_NAME} stage completed <<<<<<")
-# except Exception as e:
-#     exception = CustomException(e, sys)
-#     logger.exception(exception)
-#     raise exception
+STAGE_NAME = "Data Validation"
+try:
+   logger.info(f">>>>>> {STAGE_NAME} stage started <<<<<<") 
+   data_validation = DataValidationPipeline(config)
+   data_validation.run()
+   logger.info(f">>>>>> {STAGE_NAME} stage completed <<<<<<")
+except Exception as e:
+    exception = CustomException(e, sys)
+    logger.exception(exception)
+    raise exception
 
 
-# STAGE_NAME = "Data Transformation"
+# STAGE_NAME = "Data Build and Transformation"
 # try:
 #    logger.info(f">>>>>> {STAGE_NAME} stage started <<<<<<") 
-#    data_transformation = DataTransformationPipeline(config)
-#    data_transformation.run()
+#    data_construction = DataConstructionPipeline(config)
+#    data_construction.run()
 #    logger.info(f">>>>>> {STAGE_NAME} stage completed <<<<<<")
 # except Exception as e:
 #     exception = CustomException(e, sys)

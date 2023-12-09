@@ -28,7 +28,6 @@ class ModelTrainer:
             logger.info(f"Model received")
 
 
-
             logger.info(f"Training started")
 
             # trainer.train()

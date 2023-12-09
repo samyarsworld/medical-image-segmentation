@@ -3,14 +3,14 @@ artifacts_root: artifacts
 
 data_ingestion:
   root_dir: artifacts/data_ingestion
-  data_path: artifacts/data_ingestion/data
+  data_folder_path: artifacts/data_ingestion
   AWS_BUCKET_NAME: samyarsworld-nucleidata
   AWS_DATASET_NAME: data.zip
 
 data_validation:
   root_dir: artifacts/data_validation
-  data_folder_path: artifacts/data_ingestion
-  required_files: ["data/train", "data/test"]
+  data_path: artifacts/data_ingestion/data
+  required_files: ["train", "test"]
   status_path: artifacts/data_validation/status.txt
 
 data_construction:

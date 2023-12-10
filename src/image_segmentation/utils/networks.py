@@ -34,16 +34,15 @@ class SegmentationModel(nn.Module):
     # Decoders
     for channel in channels[::-1]:
       self.decodes.append(nn.ConvTranspose2d(in_channels=channel*2, out_channels=channel, kernel_size=2, stride=2, padding=0, device=DEVICE))
-      self.decodes.append(DoubleConv(channel*2, channel))
+      self.decodes.append(DoubleConv(channel * 2, channel))
 
     # Last encoder layer
     self.bottleneck = DoubleConv(channels[-1], channels[-1] * 2)
 
     # Prediction layer
-    self.final = DoubleConv(channels[0], out_channels)
+    self.final = nn.Conv2d(channels[0], out_channels, kernel_size=1)
 
   def forward(self, x):
-
     # Encoder
     skip_connections = []
     for encode in self.encodes:

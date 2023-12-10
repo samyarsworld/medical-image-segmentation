@@ -4,10 +4,13 @@ import sys
 from image_segmentation.logging import logger
 from image_segmentation.exception import CustomException
 from image_segmentation.utils.constants import DEVICE, IMG_CHANNELS, MASK_CHANNELS
-from image_segmentation.components.networks import SegmentationModel
+from image_segmentation.utils.networks import SegmentationModel
 # from datasets import load_from_disk
 import numpy as np
 from tqdm import tqdm
+import os
+
+import matplotlib.pyplot as plt
 
 
 class ModelTrainer:
@@ -91,6 +94,14 @@ class ModelTrainer:
             # model.save_pretrained(os.path.join(self.model_path, "model"))
 
             # logger.info(f"Model received")
+
+            # Load if exists
+            if os.path.exists(self.model_path):
+                
+                self.model.load_state_dict(torch.load(self.model_path))
+                logger.info(f"Pre trained model loaded")
+
+
 
             # Train model
             best_validation_loss = np.Inf

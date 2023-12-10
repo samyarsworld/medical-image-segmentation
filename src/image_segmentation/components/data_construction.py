@@ -1,7 +1,7 @@
 import sys
 from image_segmentation.logging import logger
 from image_segmentation.exception import CustomException
-from image_segmentation.components.dataset import ImageDataset
+from image_segmentation.utils.dataset import ImageDataset
 from torchvision import transforms
 from torch.utils.data import DataLoader
 

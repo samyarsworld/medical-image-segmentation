@@ -32,7 +32,7 @@ async def index(request: Request):
 @app.post("/predict")
 async def predict(data: dict):
     try:
-        text = data["input"]
+        text = data["image"]
         logger.info("PREDICTION STARTED")
         output = prediction_pipeline.run(text)
         logger.info("PREDICTION FINISHED")

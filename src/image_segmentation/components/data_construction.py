@@ -16,11 +16,6 @@ class DataConstruction:
         self.IMG_HEIGHT = self.h_params["IMG_HEIGHT"]
         self.BATCH_SIZE = self.h_params["BATCH_SIZE"]
 
-        self.train_dataset = None
-        self.validation_dataset = None
-        self.train_loader = None
-        self.validation_loader = None
-
         self.data_transformer = transforms.Compose([
             # Resize the images
             transforms.Resize(size=(self.IMG_WIDTH, self.IMG_HEIGHT)),
@@ -32,15 +27,15 @@ class DataConstruction:
         try:
             logger.info(f"Data construction started")
 
-            self.train_dataset = ImageDataset(self.base_train_path, True, self.TRAIN_SIZE, self.data_transformer)
-            self.validation_dataset = ImageDataset(self.base_train_path, False, self.TRAIN_SIZE, self.data_transformer)
+            train_dataset = ImageDataset(self.train_path, True, self.TRAIN_SIZE, self.data_transformer)
+            validation_dataset = ImageDataset(self.train_path, False, self.TRAIN_SIZE, self.data_transformer)
 
-            BATCH_SIZE = 32
-
-            self.train_loader = DataLoader(dataset=self.train_dataset, batch_size=BATCH_SIZE, shuffle=False)
-            self.validation_loader = DataLoader(dataset=self.validation_dataset, batch_size=BATCH_SIZE, shuffle=False)
+            train_loader = DataLoader(dataset=train_dataset, batch_size=self.BATCH_SIZE, shuffle=False)
+            validation_loader = DataLoader(dataset=validation_dataset, batch_size=self.BATCH_SIZE, shuffle=False)
 
             logger.info(f"Data construction finished")
+
+            return train_dataset, validation_dataset, train_loader, validation_loader
 
         except Exception as e:
             exception = CustomException(e, sys)

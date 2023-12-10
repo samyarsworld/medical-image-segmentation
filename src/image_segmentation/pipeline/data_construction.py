@@ -7,6 +7,5 @@ class DataConstructionPipeline:
 
     def run(self):
         data_construction = DataConstruction(self.config)
-        train_dataset, validation_dataset = data_construction.build()
+        return data_construction.build()
 
-        return train_dataset, validation_dataset

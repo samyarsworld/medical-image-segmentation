@@ -24,13 +24,17 @@ data_construction:
 
 model_trainer:
   root_dir: artifacts/model_trainers
-  data_path: artifacts/data_construction/dataset
-  # model_ckpt: google/pegasus-cnn_dailymail
-  # main_path: artifacts/model_trainers/pegasus-cnn_dailymail
+  IMG_CHANNELS: 3
+  MASK_CHANNELS: 1
+  # pre_trained_model: google/pegasus-cnn_dailymail
+  # pre_trained_model_path: artifacts/model_trainers/UNET/model.pt
+  model_path: artifacts/model_trainers/UNET/model.pt
 
   # Hyper parameters
   h_params:
     epochs: 1
+    lr: 0.01
+    channels: [16, 32, 64, 128, 256]
     # warmup_steps: 500
     # train_batch_size: 1
     # eval_batch_size: 1

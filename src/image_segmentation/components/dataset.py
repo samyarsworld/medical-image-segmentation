@@ -1,9 +1,9 @@
 import torch
 from torch.utils.data import Dataset
 import numpy as np
-import glob as glob
 from PIL import Image
 
+from glob import glob
 import os
 
 class ImageDataset(Dataset):
@@ -55,3 +55,5 @@ class ImageDataset(Dataset):
       return self.transform(img), self.transform(mask)
     else:
       return img, mask
+
+

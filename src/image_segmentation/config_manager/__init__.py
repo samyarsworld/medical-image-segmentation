@@ -1,6 +1,7 @@
 from image_segmentation.utils import read_yaml, create_directories
 from pathlib import Path
 from typing import Dict
+import os
 
 CONFIG_PATH = Path("config/config.yaml")
 class ConfigManager:
@@ -31,7 +32,7 @@ class ConfigManager:
 
     def get_model_trainer_config(self) -> Dict:
         config = self.config["model_trainer"]
-        create_directories([config["root_dir"], config["root_dir"] + "/" + config["algorithm_name"]])
+        create_directories([config["root_dir"], os.path.join(config["root_dir"], config["algorithm_name"])])
 
         return config
 

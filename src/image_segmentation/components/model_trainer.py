@@ -13,7 +13,6 @@ from tqdm import tqdm
 class ModelTrainer:
     def __init__(self, config):
         self.root_dir = config["root_dir"]
-        self.data_path = config["data_path"]
         # self.pre_trained_model = config["pre_trained_model"]
         self.model_path = config["model_path"]
 

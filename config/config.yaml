@@ -24,10 +24,11 @@ data_construction:
 
 model_trainer:
   root_dir: artifacts/model_trainers
+  algorithm_name: UNET
   IMG_CHANNELS: 3
   MASK_CHANNELS: 1
-  # pre_trained_model: google/pegasus-cnn_dailymail
-  # pre_trained_model_path: artifacts/model_trainers/UNET/model.pt
+  # pre_trained_model: url
+  # pre_trained_model_path: artifacts/model_trainers/UNET/pre_trained_model.pt
   model_path: artifacts/model_trainers/UNET/model.pt
 
   # Hyper parameters
@@ -36,20 +37,13 @@ model_trainer:
     lr: 0.01
     channels: [16, 32, 64, 128, 256]
     # warmup_steps: 500
-    # train_batch_size: 1
-    # eval_batch_size: 1
-    # weight_decay: 0.01
     # logging_steps: 10
-    # evaluation_strategy: "steps"
     # eval_steps: 500
     # save_steps: 1000000
-    # gradient_accumulation_steps: 16
 
 model_evaluation:
   root_dir: artifacts/model_evaluation
-  data_path: artifacts/data_construction/dataset
-  # model_path: artifacts/model_trainers/pegasus-cnn_dailymail/model
-  # arguments_path: artifacts/model_trainers/pegasus-cnn_dailymail/arguments
+  model_path: artifacts/model_trainers/UNET/model.pt
   metric_file_name: artifacts/model_evaluation/metrics.csv
   params:
     eval_batch_size: 2
@@ -57,4 +51,8 @@ model_evaluation:
 
 target_prediction:
   root_dir: artifacts/target_prediction
-  # model_path: artifacts/model_trainers/pegasus-cnn_dailymail/model
+  model_path: artifacts/model_trainers/UNET/model.pt
+  test_path: artifacts/data_ingestion/data/test
+  IMG_WIDTH: 128
+  IMG_HEIGHT: 128
+  channels: [16, 32, 64, 128, 256]

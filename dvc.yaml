@@ -1,0 +1,51 @@
+stages:
+  ingestion:
+    cmd: python src/image_segmentation/pipeline/data_ingestion.py
+    deps:
+      - src/image_segmentation/pipeline/data_ingestion.py
+      - config/config.yaml
+    outs:
+      - artifacts/data_ingestion/data
+
+  validation:
+    cmd: python src/image_segmentation/pipeline/data_validation.py
+    deps:
+      - src/image_segmentation/pipeline/data_validation.py
+      - config/config.yaml
+    outs:
+      - artifacts/data_validation/status.txt
+
+  construction:
+    cmd: python src/image_segmentation/pipeline/data_construction.py
+    deps:
+      - src/image_segmentation/pipeline/data_construction.py
+      - artifacts/data_ingestion/data
+      - config/config.yaml
+
+  training:
+    cmd: python src/image_segmentation/pipeline/training.py
+    deps:
+      - src/image_segmentation/pipeline/training.py
+      - artifacts/data_ingestion/data
+      - config/config.yaml
+    # params:
+    #   - IMAGE_SIZE
+    #   - EPOCHS
+    #   - BATCH_SIZE
+
+    outs:
+      - artifacts/model_trainers/UNET/model.pt
+
+  evaluation:
+    cmd: python src/image_segmentation/pipeline/model_evaluation.py
+    deps:
+      - src/image_segmentation/pipeline/model_evaluation.py
+      - config/config.yaml
+      - artifacts/data_ingestion/data
+      - artifacts/model_trainers/UNET/model.pt
+    # params:
+    #   - IMAGE_SIZE
+    #   - BATCH_SIZE
+    # metrics:
+    #   - scores.json:
+    #       cache: false

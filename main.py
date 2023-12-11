@@ -39,29 +39,29 @@ config = ConfigManager()
 #     raise exception
 
 
-STAGE_NAME = "Data Build and Transformation"
-try:
-   logger.info(f">>>>>> {STAGE_NAME} stage started <<<<<<") 
-   data_construction = DataConstructionPipeline(config)
-   train_dataset, validation_dataset, train_loader, validation_loader = data_construction.run()
-   logger.info(f">>>>>> {STAGE_NAME} stage completed <<<<<<")
+# STAGE_NAME = "Data Build and Transformation"
+# try:
+#    logger.info(f">>>>>> {STAGE_NAME} stage started <<<<<<") 
+#    data_construction = DataConstructionPipeline(config)
+#    train_dataset, validation_dataset, train_loader, validation_loader = data_construction.run()
+#    logger.info(f">>>>>> {STAGE_NAME} stage completed <<<<<<")
    
-except Exception as e:
-    exception = CustomException(e, sys)
-    logger.exception(exception)
-    raise exception
+# except Exception as e:
+#     exception = CustomException(e, sys)
+#     logger.exception(exception)
+#     raise exception
 
 
-STAGE_NAME = "Model Training"
-try:
-   logger.info(f">>>>>> {STAGE_NAME} stage started <<<<<<") 
-   model_training = ModelTrainingPipeline(config, train_loader, validation_loader)
-   model_training.run()
-   logger.info(f">>>>>> {STAGE_NAME} stage completed <<<<<<")
-except Exception as e:
-    exception = CustomException(e, sys)
-    logger.exception(exception)
-    raise exception
+# STAGE_NAME = "Model Training"
+# try:
+#    logger.info(f">>>>>> {STAGE_NAME} stage started <<<<<<") 
+#    model_training = ModelTrainingPipeline(config, train_loader, validation_loader)
+#    model_training.run()
+#    logger.info(f">>>>>> {STAGE_NAME} stage completed <<<<<<")
+# except Exception as e:
+#     exception = CustomException(e, sys)
+#     logger.exception(exception)
+#     raise exception
 
 
 # STAGE_NAME = "Model Evaluation"
@@ -76,16 +76,16 @@ except Exception as e:
 #     raise exception
 
 
-# STAGE_NAME = "Target Prediction"
-# try:
-#    logger.info(f">>>>>> {STAGE_NAME} stage started <<<<<<") 
-#    target_prediction = TargetPredictionPipeline(config)
-#    target_prediction.run()
-#    logger.info(f">>>>>> {STAGE_NAME} stage completed <<<<<<")
-# except Exception as e:
-#     exception = CustomException(e, sys)
-#     logger.exception(exception)
-#     raise exception
+STAGE_NAME = "Target Prediction"
+try:
+   logger.info(f">>>>>> {STAGE_NAME} stage started <<<<<<") 
+   target_prediction = TargetPredictionPipeline(config)
+   target_prediction.run()
+   logger.info(f">>>>>> {STAGE_NAME} stage completed <<<<<<")
+except Exception as e:
+    exception = CustomException(e, sys)
+    logger.exception(exception)
+    raise exception
 
 
 

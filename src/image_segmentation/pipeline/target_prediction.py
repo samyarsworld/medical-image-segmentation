@@ -12,6 +12,8 @@ import torch
 
 from image_segmentation.utils.networks import SegmentationModel
 from image_segmentation.utils.constants import DEVICE, IMG_CHANNELS, MASK_CHANNELS
+from image_segmentation.utils import plot_prediction
+
 
 
 class TargetPredictionPipeline:
@@ -54,25 +56,15 @@ class TargetPredictionPipeline:
             model.load_state_dict(torch.load(self.model_path))
 
             logger.info("MODEL LOADED")
-            
-            logits = model(img.to(DEVICE).unsqueeze(0)) # Unsqueeze to add the batch dimension (here would be just 1)
+
+            logits = model(img.unsqueeze(dim=0).to(DEVICE)) # Unsqueeze to add the batch dimension (here would be just 1)
 
             pred = torch.sigmoid(logits)
             pred = (pred > 0.5)
 
             logger.info("PREDICTION SUCCESSFUL")
 
-
-            fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10,5))
-        
-            ax1.imshow(img.squeeze(dim=0).permute(1,2,0), cmap = 'gray')
-            ax1.set_title('Image')
-
-
-            ax2.imshow(pred.detach().cpu().squeeze(0).permute(1,2,0), cmap = 'gray')
-            ax2.set_title('Segmented Image')
-
-            plt.show()
+            plot_prediction(img, pred)
             
     
         except Exception as e:

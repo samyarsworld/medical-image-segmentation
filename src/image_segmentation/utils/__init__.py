@@ -99,13 +99,16 @@ def plot_transformed_images(image_paths, transform, n=2):
             ax2.axis("off")
 
 def plot_prediction(image, pred_image): 
-      fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10,5))
-      
-      ax1.imshow(image.permute(1,2,0).squeeze(), cmap = 'gray')
-      ax1.set_title('Image')
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10,5))
 
-      ax2.imshow(pred_image.permute(1,2,0).squeeze(), cmap = 'gray')
-      ax2.set_title('Segmented Image')
+    ax1.imshow(image.permute(1,2,0), cmap = 'gray')
+    ax1.axis("off")
+    ax1.set_title('Image')
+
+    ax2.imshow(pred_image.squeeze(dim=0).detach().cpu().permute(1,2,0), cmap = 'gray')
+    ax2.axis("off")
+    ax2.set_title('Segmented Image')
+    plt.show()
 
 
       

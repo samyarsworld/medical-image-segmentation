@@ -33,7 +33,7 @@ model_trainer:
 
   # Hyper parameters
   h_params:
-    epochs: 15
+    epochs: 20
     lr: 0.01
     channels: [16, 32, 64, 128, 256]
     # warmup_steps: 500

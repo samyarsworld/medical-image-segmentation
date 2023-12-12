@@ -1,3 +1,4 @@
+### Project 70% complete..
 # Nuclei image segmentation
 
 ## A computer vision segmentation model built on UNET architecture, capable of capturing Nuclei cells in an image.
